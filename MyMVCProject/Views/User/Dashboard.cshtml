@@ -1,0 +1,21 @@
+﻿@model MyMVCProject.Models.UserModel.UserResponse
+@inject IHttpContextAccessor _httpContext
+@using System.Security.Claims
+@{
+    Layout = "_Layout2";
+    var role = _httpContext.HttpContext.User.FindFirst(x => x.Type == ClaimTypes.Role).Value;
+}
+<h3 class="i-name">
+    DashBoard
+
+</h3>
+<div class="values">
+    @if (role == "Customer")
+    {
+        <img src="~/images/customerDashboard4.jpg" alt="Alternate Text" />
+    }
+    else
+    {
+        <img src="~/images/adminDashOrig3.png" alt="Alternate Text" />
+    }
+</div>

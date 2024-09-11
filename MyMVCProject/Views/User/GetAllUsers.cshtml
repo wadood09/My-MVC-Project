@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MyMVCProject.Models.UserModel.UsersResponse>
+
+@{
+    ViewData["Title"] = "GetAllUsers";
+    Layout = "_Layout2";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Table.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <p class="alert">@TempData["SuccessMessage"]</p>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+        <h1>GetAllUsers</h1>
+
+        <p>
+            <a asp-controller="Authentication" asp-action="Register">Create New</a>
+        </p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Role)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{++i;}
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role)
+                        </td>
+                        <td>
+                            <a asp-action="GetUser" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="DeleteUser" asp-route-id="@item.Id">Delete</a> 
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

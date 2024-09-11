@@ -1,0 +1,164 @@
+﻿* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+    background-image: url('../images/backgroundImage3.webp');
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.alert {
+    width: 100%;
+    padding: 9px;
+    background-color: #0ee0a1;
+    color: red;
+    text-align: center;
+    font-size: 12px;
+}
+
+.containerbox {
+    width: 50%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    height: 100vh;
+}
+
+.departLeft {
+    text-align: center;
+    background-color: #05313f;
+    margin-top: 20%;
+    color: white;
+}
+
+    .departLeft h2:hover,
+    .departLeft h4:hover {
+        color: orangered;
+    }
+
+
+
+
+.container {
+    margin: 20px auto;
+    width: 400px;
+    background-color: rgba(255, 255, 255, .1);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.container-outer {
+    padding-top: 60px;
+}
+
+.reg {
+    /* background-color:#36a19a ; */
+    background-color: #05313f;
+    color: #ffffff;
+    padding: 20px 30px;
+}
+
+    .reg h2 {
+        text-align: center;
+    }
+
+.wrapper {
+    padding: 20px 40px;
+}
+
+.form-control {
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+    .form-control input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+.select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-right: 50px;
+}
+
+    .select label {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+.imageUpload {
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.submit {
+    background-color: #05313f;
+    border-style: none;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #05313f;
+    cursor: pointer;
+    font-size: large;
+}
+
+    .submit:hover {
+        text-decoration: underline white;
+        background-color: orangered;
+        border: none;
+    }
+
+.form-control a {
+    text-decoration: none;
+}
+
+.login {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+    .login a {
+        text-decoration: none;
+        color: #05313f;
+    }
+
+    .login a:hover {
+        text-decoration: underline;
+        color: orangered;
+    }
+
+@media only screen and (max-width: 767px) {
+    .container {
+        width: 80%;
+    }
+
+    .reg {
+        padding: 6px 6px;
+    }
+
+        .reg h2 {
+            font-size: 18px;
+            text-align: center;
+        }
+}
+input[type="file"] {
+    padding: 2%;
+    margin-left: 20px;
+}

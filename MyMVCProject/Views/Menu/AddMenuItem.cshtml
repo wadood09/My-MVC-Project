@@ -1,0 +1,62 @@
+﻿@model MyMVCProject.Models.MenuModel.MenuItemRequest
+
+@{
+    ViewData["Title"] = "AddMenuItem";
+    Layout = "_Layout2";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Form.css">>
+    <title>Create MenuItem</title>
+</head>
+
+<body>
+    <div class="container-item">
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-error">
+                @TempData["ErrorMessage"].ToString()
+            </div>
+        }
+        <div class="head">
+            <h2>Create MenuItem</h2>
+        </div>
+        <form asp-action="AddMenuItem" class="wrapper" method="post">
+            <div class="form-control">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" name="Name" class="form-control" type="text" placeholder="Enter name" required />
+            </div>
+            <div class="form-control">
+                <label asp-for="Description"></label>
+                <input asp-for="Description" name="Description" type="text" class="form-control" placeholder="Enter description" />
+            </div>
+            <div class="form-control">
+                <label>Price</label>
+                <input class="input" type="text" id="price" name="Price" placeholder="Enter price" required>
+            </div>
+            <div class="form-control">
+                <label>Food</label>
+                @Html.DropDownList("FoodId", ViewBag.foods as SelectList, new { @class = "select" })
+            </div>
+            
+            <div class="imageUpload">
+                <label>Image</label>
+                <input type="file" name="ImageUrl">
+            </div>
+            <div class="form-control">
+                <input class="submit" type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+
+</html>
+

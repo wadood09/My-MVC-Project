@@ -1,0 +1,61 @@
+﻿
+@inject IHttpContextAccessor _httpContext
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Web</title>
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <div class="but">
+                    
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="link">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="" asp-action="">About Clh Restaurant</a></li>
+                            <li><a asp-area ="" asp-controller="" asp-action="">FAQ</a></li>
+                            @if(_httpContext.HttpContext.User.Claims.Any())
+                            {
+                                <li><a asp-area="" asp-controller="User" asp-action="Dashboard">Dashboard</a></li>
+                            }
+                            <li><a asp-action="Login" asp-controller="Authentication">Login</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <section class="newsletter">
+        <div class="container down">
+            <h1>Subscribe To Our Newsletter</h1>
+            <form action="">
+                <input type="email" placeholder="Enter Email...">
+                <button type="submit" class="btn-1">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p><strong>Clh Restaurant, Copyright</strong> &copy; 2023</p>
+        <section class="social-hand">
+            <div class="social-fb"><a href="#"><i class="fa fa-facebook"></i></a></div>
+            <div class="social-twit"><a href="#"><i class="fa fa-twitter"></a></div>
+            <div class="social-what"><a href="#"><i class="fa fa-whatsapp"></a></div>
+        </section>
+    </footer>
+
+</body>
+</html>

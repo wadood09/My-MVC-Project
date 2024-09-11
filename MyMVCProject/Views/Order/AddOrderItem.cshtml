@@ -1,0 +1,51 @@
+﻿@model MyMVCProject.Models.OrderModel.OrderItemRequest
+
+@{
+    ViewData["Title"] = "AddOrderItem";
+    Layout = "_Layout2";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Form.css">>
+    <title>Order Item</title>
+</head>
+
+<body>
+    <div class="container-food">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+
+        <div class="head">
+            <h2>Create Food</h2>
+        </div>
+        <form asp-action="AddOrderItem" class="wrapper" method="post">
+            @if (TempData["Cart"] == null)
+            {
+                <div class="form-control">
+                    <label>Food</label>
+                    <select name="FoodId" class="select" asp-items="@ViewBag.foods">
+                    </select>
+                </div>
+            }
+            <div class="form-control">
+                <label asp-for="Quantity"></label>
+                <input asp-for="Quantity" name="Quantity" type="number" id="quantity" min="1" placeholder="Enter quantity/amount" />
+            </div>
+            <div class="form-control">
+                <input class="submit" type="submit" value="Add">
+                <input class="submit" type="submit" value="Back to Menu" asp-action="GetAllMenu" asp-controller="Menu">
+            </div>
+        </form>
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,71 @@
+﻿.container {
+    margin-top: 8%;
+    margin-left: 2%;
+}
+
+    .container h1 {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .container a {
+        text-decoration: none;
+        color: black;
+    }
+
+        .container a:hover {
+            text-decoration: underline;
+            color: blue;
+        }
+
+
+.detail-container {
+    width: 100%;
+    margin: auto;
+    display: block;
+    justify-content: space-between;
+}
+    .detail-container p, h3 {
+        color: white;
+        padding: 10px;
+    }
+
+    .inner-container {
+        text-align: center;
+        margin: auto;
+    }
+
+.btn {
+    margin: 10px;
+}
+
+    .btn a {
+        background: #253047;
+        width: 30%;
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+    }
+
+
+    .btn :hover {
+        background: rgb(196, 42, 4);
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+
+.select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-right: 50px;
+}
+
+    .select label {
+        margin-left: 50px;
+        margin-right: 50px;
+    }

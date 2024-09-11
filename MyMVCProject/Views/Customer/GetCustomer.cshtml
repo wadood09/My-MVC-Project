@@ -1,0 +1,56 @@
+﻿@model MyMVCProject.Models.CustomerModel.CustomerResponse
+@inject IHttpContextAccessor _httpContext
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "GetCustomer";
+    Layout = "_Layout2";
+    var role = _httpContext.HttpContext.User.FindFirst(x => x.Type == ClaimTypes.Role).Value;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Details.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (TempData["OrderErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["OrderErrorMessage"]</p>
+        }
+
+        <div class="detail-container">
+            <div class="image">
+                <img src="@Model.ImageUrl" />
+            </div>
+            <div class="inner-container">
+                <div class="details">
+                    <p hidden>@Model.Id</p>
+                    <h3>@Model.FullName</h3>
+                    <p>Age: @Model.Age</p>
+                    <p>Gender: @Model.Gender</p>
+                    <p>Phonenumber: @Model.PhoneNumber</p>
+                </div>
+                @{
+                    TempData["CustomerName"] = Model.FullName;
+                }
+                <div class="btn">
+                    <a asp-action="GetAllOrderByCustomer" asp-controller="Order" asp-route-customerId="@Model.Id">View Orders</a>
+                    @if (role == "Customer")
+                    {
+                        <a asp-action="UpdateCustomer" asp-route-id="@Model.Id">Update Profile</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="link">
+            <a asp-action="GoBack" asp-controller="User">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿@using MyMVCProject.Core.Domain.Enums
+@using MyMVCProject.Models.UserModel
+@model MyMVCProject.Models.ViewModels.UpdateUserViewModel
+
+@{
+    ViewData["Title"] = "UpdateUser";
+    Layout = null;
+    var gender = new SelectList(Enum.GetValues(typeof(Gender)).Cast<Gender>(), Model.Gender);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User update</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Create.css">
+</head>
+<body>
+    <div class="container-outer">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+        <div class="container">
+            <div class="reg">
+                <h2>Update User</h2>
+            </div>
+            <form class="wrapper" method="post" enctype="multipart/form-data">
+
+                <div class="form-control">
+                    <label>First Name</label>
+                    <input class="input" type="text" name="FirstName" value="@Model.FirstName">
+                </div>
+                <div class="form-control">
+                    <label> Last Name</label>
+                    <input class="input" type="text" name="LastName" value="@Model.LastName">
+                </div>
+                <div class="form-control">
+                    <label> Email</label>
+                    <input class="input" type="text" name="Email" value="@Model.Email">
+                </div>
+                <div class="form-control">
+                    <label> Date of Birth</label>
+                    <input class="input" type="date" name="DateOfBirth">
+                </div>
+
+
+                <div class="form-control">
+                    <label>Gender</label>
+                    <select value="@Model.Gender" class="select" name="Gender" asp-items="@gender">
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label>Role</label>
+                    @Html.DropDownList("RoleId", ViewBag.roles as SelectList, new { @class = "select" })
+                </div>
+                <div class="form-control">
+                    <label>Phone Number</label>
+                    <input type="tel" name="PhoneNumber" value="@Model.PhoneNumber">
+                </div>
+                <div class="imageUpload">
+                    <label>Image</label>
+                    <input type="file" name="ImageUrl">
+                </div>
+                <div class="form-control">
+                    <input class="submit" type="submit" value="Save">
+                    <input class="submit" type="submit" value="Return" asp-action="GoBack" asp-controller="User">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

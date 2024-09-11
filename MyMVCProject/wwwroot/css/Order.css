@@ -1,0 +1,110 @@
+﻿.container {
+    margin-top: 8%;
+    margin-left: 2%;
+}
+
+
+
+    .container h2 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+/* General container styles */
+.detail-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+    /* Heading styles */
+    .detail-container h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .detail-container h1 {
+        text-align: center;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+
+/* Flexbox wrapper for labels and values */
+.wrapper {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+    .wrapper .gg {
+        flex: 1;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .wrapper .ff {
+        flex: 2;
+        color: #333;
+    }
+
+/* Table styles */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+    .data-table th, .data-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .data-table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    .data-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Link button styles */
+    .data-table a {
+        color: #007bff;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+        .data-table a:hover {
+            background-color: #e9ecef;
+        }
+
+.btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .btn a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+        .btn a:hover {
+            background-color: #0056b3;
+        }

@@ -1,0 +1,114 @@
+﻿.container {
+    margin-top: 8%;
+    margin-left: 2%;
+}
+
+    .container h1 {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .container h2 {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .container a {
+        text-decoration: none;
+        color: black;
+    }
+
+        .container a:hover {
+            text-decoration: underline;
+            color: blue;
+        }
+
+.menu-container {
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, .1);
+    width: 98%;
+    justify-content: center;
+    padding-left: 50px;
+}
+
+.data-table {
+    border-collapse: collapse;
+    width: 95%;
+    margin-top: 20px;
+    padding-right: 8px;
+}
+
+    /* Styles for table header */
+    .data-table th {
+        background-color: #a4a4a4;
+        border: 1px solid #000000;
+        padding: 8px;
+        text-align: center;
+    }
+
+    /* Styles for table data */
+    .data-table td {
+        border: 1px solid #000000;
+        padding: 8px;
+        text-align: center;
+        background-color: rgb(213, 204, 204);
+        color: #171616;
+    }
+
+        .data-table td img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 4px;
+        }
+
+.data-table-2 {
+    border-collapse: collapse;
+    width: 95%;
+    padding-right: 8px;
+}
+
+    /* Styles for table header */
+    .data-table-2 th {
+        background-color: #a4a4a4;
+        border: 1px solid #000000;
+        padding: 8px;
+        text-align: center;
+    }
+
+    /* Styles for table data */
+    .data-table-2 td {
+        border: 1px solid #000000;
+        padding: 8px;
+        text-align: center;
+        background-color: rgb(213, 204, 204);
+        color: #171616;
+    }
+
+inner-container {
+    margin-top: 3px;
+}
+
+
+.select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-right: 50px;
+}
+
+    .select label {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+.alert {
+    width: 100%;
+    padding: 9px;
+    background-color: #0ee0a1;
+    color: red;
+    text-align: center;
+    font-size: 12px;
+}

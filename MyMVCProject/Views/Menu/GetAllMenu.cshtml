@@ -1,0 +1,185 @@
+﻿@model IEnumerable<MyMVCProject.Models.MenuModel.MenuResponse>
+@inject IHttpContextAccessor _httpContext
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "GetAllMenu";
+    Layout = "_Layout2";
+    var role = _httpContext.HttpContext.User.FindFirst(x => x.Type == ClaimTypes.Role).Value;
+    // var items = new List<MyMVCProject.Models.MenuModel.MenuItemResponse>
+    // {
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Pepperoni pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Cheese pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Onion pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Milk pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    // };
+
+    var models = Model;
+    // new List<MyMVCProject.Models.MenuModel.MenuResponse>
+    // {
+    //         new MyMVCProject.Models.MenuModel.MenuResponse
+    //         {
+    //             Description = "This menu has no description",
+    //             Name = "Pizza",
+    //             Items = items
+    //         },
+    //         new MyMVCProject.Models.MenuModel.MenuResponse
+    //         {
+    //             Description = "This menu has no description",
+    //             Name = "Pizza",
+    //             Items = items
+    //         },
+    //         new MyMVCProject.Models.MenuModel.MenuResponse
+    //         {
+    //             Description = "This menu has no description",
+    //             Name = "Pizza",
+    //             Items = items
+    //         },
+    //         new MyMVCProject.Models.MenuModel.MenuResponse
+    //         {
+    //             Description = "This menu has no description",
+    //             Name = "Pizza",
+    //             Items = items
+    //         },
+    //         new MyMVCProject.Models.MenuModel.MenuResponse
+    //         {
+    //             Description = "This menu has no description",
+    //             Name = "Pizza",
+    //             Items = items
+    //         }
+    // };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Table.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (role == "Customer")
+        {
+            if (TempData["SuccessMessage"] != null)
+            {
+                <p class="alert">@TempData["SuccessMessage"]</p>
+            }
+            if (TempData["ErrorMessage"] != null)
+            {
+                <p class="alert">@TempData["ErrorMessage"]</p>
+            }
+            @foreach (var menu in models)
+            {
+                if (menu.Items.Count == 0)
+                    continue;
+                <div class="menu-container">
+                    <h2>@menu.Name</h2>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in menu.Items)
+                            {
+                                <tr>
+                                    <td><img src="~/Images2/@item.ImageUrl" alt="@item.Name" /></td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Price</td>
+                                    <td>
+                                        <a asp-action="AddOrderItem" asp-controller="Order" asp-route-foodId="@item.FoodId">Add to cart</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+        else
+        {
+            <h1>GetAllMenus</h1>
+            <p>
+                <a asp-action="AddMenu">Create New</a>
+            </p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    ++i;
+                                }
+                                @i
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <a asp-action="GetMenu" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="UpdateMenu" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="DeleteMenu" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+

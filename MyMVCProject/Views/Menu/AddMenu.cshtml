@@ -1,0 +1,47 @@
+﻿@model MyMVCProject.Models.MenuModel.MenuRequest
+
+@{
+    ViewData["Title"] = "AddMenu";
+    Layout = "_Layout2";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Form.css">
+    <title>Create Menu</title>
+</head>
+
+<body>
+    <div class="container">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert">
+                @TempData["ErrorMessage"]!.ToString()
+            </div>
+        }
+        <div class="head">
+            <h2>Create Menu</h2>
+        </div>
+        <form asp-action="AddMenu" class="wrapper" method="post">
+            
+            <div class="form-control">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" name="Name" class="form-control" type="text" placeholder="Enter name" required />
+            </div>
+            <div class="form-control">
+                <label asp-for="Description"></label>
+                <input asp-for="Description" name="Description" type="text" class="form-control" placeholder="Enter description" />
+            </div>
+            <div class="form-control">
+                <input class="submit" type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

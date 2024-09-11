@@ -1,0 +1,108 @@
+﻿@model IEnumerable<MyMVCProject.Models.OrderModel.CustomersOrderResponse>
+@inject IHttpContextAccessor _httpContext
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "GetAllCustomerOrder";
+    Layout = "_Layout2";
+    var role = _httpContext.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Role).Value;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Table.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <p class="alert">@TempData["SuccessMessage"]</p>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+        @if(role != "Customer")
+        {
+            <h1>@TempData["CustomerName"]</h1>
+        }
+        else
+        {
+            <h1>GetAllOrders</h1>
+        }
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                ++i;
+                            }
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            <a asp-action="GetOrder" asp-route-id="@item.Id">Details</a>
+                            @if(item.Status == MyMVCProject.Core.Domain.Enums.Status.Processing)
+                            {
+                                <span> | </span>
+                                if(role != "Customer")
+                                {
+                                    <a asp-action="VerifyOrder" asp-route-id="@item.Id">Accept Order</a>
+                                    <span> | </span>
+                                }
+                                <a asp-action="CancelOrder" asp-route-id="@item.Id">Cancel Order</a>
+                            }
+                            @if (role == "Customer")
+                            {
+                                <span> | </span>
+                                <a asp-action="RemoveOrder" asp-route-id="@item.Id">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+

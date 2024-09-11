@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MyMVCProject.Models.CustomerModel.CustomersResponse>
+
+@{
+    ViewData["Title"] = "GetAllCustomers";
+    Layout = "_Layout2";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Table.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <p class="alert">@TempData["SuccessMessage"]</p>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+        <h1>Customers</h1>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        No. Of Orders Made
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {
+                      ++i;
+                    
+                    <tr>
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoOfOrdersMade)
+                        </td>
+                        <td>
+                            <a asp-action="GetCustomer" asp-route-id="@item.Id">Details</a>
+                            @if(item.NoOfOrdersMade > 0)
+                            {
+                                <p> | </p>
+                                <a asp-action="GetAllOrderByCustomer" asp-controller="Order" asp-route-customerId="@item.Id">View Orders</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

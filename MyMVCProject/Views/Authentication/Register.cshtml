@@ -1,0 +1,87 @@
+﻿@using MyMVCProject.Core.Domain.Enums
+@model MyMVCProject.Models.UserModel.UserRequest
+@{
+    Layout = null;
+    var user = Model;
+    if(user == null)
+    {
+        user = new MyMVCProject.Models.UserModel.UserRequest
+        {
+
+        };
+    }
+    var gender = new SelectList(Enum.GetValues(typeof(Gender)).Cast<Gender>(), user.Gender);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+</head>
+<body>
+    <div class="container-outer">
+        
+        <div class="container">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <p class="alert">@TempData["ErrorMessage"]</p>
+            }
+            <div class="reg">
+                <h2>Registration Form</h2>
+            </div>
+            <form id="form" class="wrapper" method="post" enctype="multipart/form-data">
+                <div class="form-control">
+                    <label>First Name</label>
+                    <input type="text" name="FirstName" placeholder="first name" value="@user.FirstName" required>
+                </div>
+                <div class="form-control">
+                    <label>Last Name</label>
+                    <input type="text" name="LastName" placeholder="last name" value="@user.LastName" required>
+                </div>
+                <div class="form-control">
+                    <label>Email</label>
+                    <input type="email" name="Email" id="" placeholder="email" value="@user.LastName" required>
+                </div>
+                <div class="form-control">
+                    <label>Password</label>
+                    <input type="password" name="Password" id="password" placeholder="password" value="@user.Password" required maxlength="8">
+                </div>
+                <div class="form-control">
+                    <label>Confirm Password</label>
+                    <input type="password" name="ConfirmPassword" id="confirmPass" placeholder="confirm password" value="@user.ConfirmPassword" maxlength="8">
+                </div>
+                <div class="form-control">
+                    <label>Date of Birth</label>
+                    <input type="date" name="DateOfBirth" placeholder="date of birth" value="@user.DateOfBirth" required>
+                </div>
+                <div class="form-control">
+                    <label>Phone Number</label>
+                    <input type="tel" name="PhoneNumber" placeholder="phonenumber" value="@user.PhoneNumber" required>
+                </div>
+                <div class="form-control">
+                    <label>Gender</label>
+                    <select value="@user.Gender" class="select" name="Gender" asp-items="@gender">
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label>Role</label>
+                    @Html.DropDownList("RoleId", ViewBag.roles as SelectList, new { @class = "select" })
+                </div>
+                <div class="imageUpload">
+                    <label class="lab">Image</label>
+                    <input type="file" name="ImageUrl" value="@user.ImageUrl" />
+                </div>
+
+
+                <div class="form-control">
+                    <input class="submit" type="submit" value="Register">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script src="~/js/site.js">
+
+    </script>
+</body>
+</html>

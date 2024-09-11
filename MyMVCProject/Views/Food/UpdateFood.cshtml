@@ -1,0 +1,48 @@
+﻿@model MyMVCProject.Models.ViewModels.UpdateFoodViewModel
+
+@{
+    ViewData["Title"] = "UpdateFood";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Food update</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Create.css">
+</head>
+<body>
+    <div class="container-outer">
+        <div class="container">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <p class="alert">@TempData["ErrorMessage"]</p>
+            }
+                <div class="reg">
+                    <h2>Update Food</h2>
+                </div>
+                <form class="wrapper" method="post" enctype="multipart/form-data">
+
+                    <div class="form-control">
+                        <label>Name</label>
+                        <input class="input" type="text" name="Name" value="@Model.Name">
+                    </div>
+                    <div class="form-control">
+                        <label> Price</label>
+                        <input class="input" type="text" id="price" name="Price" value="@Model.Price">
+                    </div>
+                    <div class="form-control">
+                        <label>Quantity</label>
+                        <input class="input" type="number" id="quantity" min="@Model.Quantity" name="Quantity" value="@Model.Quantity">
+                    </div>
+                    <div class="form-control">
+                    <input class="submit" type="submit" value="Update">
+                    <input class="submit" type="submit" value="Return" asp-action="GoBack" asp-controller="User">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="~/js/site.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,48 @@
+﻿@model MyMVCProject.Models.UserModel.UserResponse
+@inject IHttpContextAccessor _httpContext
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "GetUser";
+    Layout = "_Layout2";
+    var role = _httpContext.HttpContext.User.FindFirst(x => x.Type == ClaimTypes.Role).Value;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Details.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="detail-container">
+            <div class="image">
+                <img src="~/Images2/@Model.ImageUrl" />
+            </div>
+            <div class="inner-container">
+                <div class="details">
+                    <p hidden>@Model.Id</p>
+                    <h3>@Model.FullName</h3>
+                    <p>Age: @Model.Age</p>
+                    <p>Email: @Model.Email</p>
+                    <p>Gender: @Model.Gender</p>
+                    <p>Phonenumber: @Model.PhoneNumber</p>
+                    <p>Role: @Model.RoleName</p>
+                </div>
+                @if (role != "Chef" && Model.RoleName != "Customer")
+                {
+                    <div class="btn">
+                        <a asp-action="UpdateUser" asp-route-id="@Model.Id">Update User</a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="link">
+            <a asp-action="GetAllUsers">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

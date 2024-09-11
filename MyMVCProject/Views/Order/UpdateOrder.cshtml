@@ -1,0 +1,38 @@
+﻿@model MyMVCProject.Models.ViewModels.UpdateOrderViewModel
+
+@{
+    ViewData["Title"] = "UpdateOrder";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order update</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Create.css">
+</head>
+<body>
+    <div class="container-outer">
+        <div class="container">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <p class="alert">@TempData["ErrorMessage"]</p>
+            }
+            <div class="reg">
+                <h2>Update Order</h2>
+            </div>
+            <form class="wrapper" method="post" enctype="multipart/form-data">
+                <div class="form-control">
+                    <label> Description</label>
+                    <input class="input" type="text" name="Description" placeholder="@Model.Description">
+                </div>
+                <div class="form-control">
+                    <input class="submit" type="submit" value="Update">
+                    <input class="submit" type="submit" value="Return" asp-action="GoBack" asp-controller="User">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

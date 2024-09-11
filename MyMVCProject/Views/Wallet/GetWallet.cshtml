@@ -1,0 +1,62 @@
+﻿@model MyMVCProject.Models.WalletModel.WalletResponse
+@inject IHttpContextAccessor _httpContext
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "GetWallet";
+    Layout = "_Layout2";
+    var role = _httpContext.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Role).Value;
+    var name = _httpContext.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Name).Value;
+    var age = _httpContext.HttpContext.User.Claims.First(x => x.Type == "Age").Value;
+    if(role == "Admin")
+    {
+        name = "Clh Restaurant";
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Details3.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="detail-container">
+            <h2>Wallet Details</h2>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Name</p>
+                </div>
+                <div class="ff">
+                    <p>@name</p>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Age</p>
+                </div>
+                <div class="ff">
+                    <p>@age</p>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Balance</p>
+                </div>
+                <div class="ff">
+                    <p>@Model.Balance</p>
+                </div>
+            </div>
+            @if(role == "Customer")
+            {
+                <div class="btn">
+                    <a asp-action="UpdateWallet" asp-route-id="@Model.Id">Update Wallet</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

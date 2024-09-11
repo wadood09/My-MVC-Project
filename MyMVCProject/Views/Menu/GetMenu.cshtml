@@ -1,0 +1,91 @@
+﻿@model MyMVCProject.Models.MenuModel.MenuResponse
+
+@{
+    ViewData["Title"] = "GetMenu";
+    Layout = "_Layout2";
+    // var items = new List<MyMVCProject.Models.MenuModel.MenuItemResponse>
+    // {
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Pepperoni pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Cheese pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Onion pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    //     new MyMVCProject.Models.MenuModel.MenuItemResponse
+    //     {
+    //         Description = "This item has no description",
+    //         Name = "Milk pizza",
+    //         Price = 2300,
+    //         FoodId = 1
+    //     },
+    // };
+    var odel = Model;
+    // new MyMVCProject.Models.MenuModel.MenuResponse
+    //         {
+    //             Description = "This menu has no description",
+    //             Name = "Pizza",
+    //             Items = items
+    //         };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Menu.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="detail-container">
+            <h2>@odel.Name</h2>
+            @{
+                if(Model.Items.Count == 0)
+                {
+                    odel.Description = "No item has yet to be added to this menu";
+                }
+            }
+            <h5>@odel.Description</h5>
+            <div class="list">
+                <ul>
+                    @foreach (var item in odel.Items)
+                    {
+                        <li>
+                            <div class="item">
+                                 <img src="~/Images2/@item.ImageUrl" alt="@item.Name"/>
+                                 <div class="item-info">
+                                    <p>Name: @item.Name</p>
+                                    <p>Price: @item.Price</p>
+                                    <p>Description: @item.Description</p>
+                                 </div>
+                                <div class="btn2">
+                                    <a asp-action="UpdateMenuItem" asp-route-menuId="@Model.Id" asp-route-id="@item.Id">Update Item</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="btn">
+                <a asp-action="AddMenuItem" asp-route-id="@Model.Id">Add Item</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

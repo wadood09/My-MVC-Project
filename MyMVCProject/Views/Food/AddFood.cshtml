@@ -1,0 +1,50 @@
+﻿@model MyMVCProject.Models.FoodModel.FoodRequest
+
+@{
+    ViewData["Title"] = "AddFood";
+    Layout = "_Layout2";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Form.css">>
+    <title>Create Food</title>
+</head>
+
+<body>
+    <div class="container-food">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+
+        <div class="head">
+            <h2>Create Food</h2>
+        </div>
+        <form asp-action="AddFood" class="wrapper" method="post">
+            
+            <div class="form-control">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" name="Name"  type="text" placeholder="Enter name" required />
+            </div>
+            <div class="form-control">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" name="Price" type="text" id="price" placeholder="Enter Price" required />
+            </div><div class="form-control">
+                <label asp-for="Quantity"></label>
+                <input asp-for="Quantity" name="Quantity" type="number" id="quantity" min="0" placeholder="Enter quantity/amount" />
+            </div>
+            <div class="form-control">
+                <input class="submit" type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+
+</html>
+

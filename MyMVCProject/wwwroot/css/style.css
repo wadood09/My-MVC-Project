@@ -1,0 +1,255 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    /*background-color: #282e44;*/
+    color: white;
+}
+
+body {
+    background-image: url('../images/backgroundImage2.webp');
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.navbar {
+    /*margin: 3rem;*/
+    padding-top: 2rem;
+    border-bottom: #282e44 2px;
+}
+
+.navbar-collapse {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    width: 100px;
+}
+
+ul.link {
+    display: flex;
+    list-style: none;
+    margin-left: 3rem;
+}
+
+.link li {
+    display: inline-flex;
+    padding: 0 20px 0 20px;
+}
+
+a {
+    color: #fafafa;
+    text-decoration: none;
+}
+
+li a:hover {
+    padding: 8px;
+    border-radius: 5px;
+    font: bold;
+    background: #e11b0d;
+}
+
+
+.rightSide a {
+    color: black;
+}
+
+
+/*hr {
+        border: #e8491d 2px solid;
+    }*/
+
+.mainNav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.container-fluid {
+    display: flex;
+    /*justify-content: space-around;*/
+    width: 100%;
+    align-items: center;
+}
+
+.but {
+    display: block;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.btn {
+    width: 4rem;
+    height: 25px;
+    border: 0;
+    border-radius: 5px;
+}
+
+    .btn:hover {
+        border-radius: 7px;
+        color: white;
+        background-color: #e11b0d;
+    }
+
+.container {
+    width: 90%;
+    margin: auto;
+    margin-top: 1rem;
+    overflow: hidden;
+    display: block;
+    justify-content: space-between;
+}
+
+.Search {
+    height: 25px;
+    border-radius: 5px;
+    border: 0;
+    opacity: 0.5;
+}
+
+    .Search:hover {
+        opacity: 1;
+    }
+
+.pb-3 {
+    height: 70vh;
+}
+
+.btn-1 {
+    height: 30px;
+    background: #e11b0d;
+    border: none;
+    padding: 0 20px;
+    color: #ffffff;
+}
+
+    .btn-1:hover {
+        background: #282e44;
+        border: solid 2px #e11b0d;
+    }
+
+.container-btn .app-btn {
+    background-color: #e8491d;
+    padding: 15px 25px;
+    font-weight: bold;
+    align-items: center;
+    border: none;
+    border-radius: 50px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 17px;
+    margin-top: 2rem;
+}
+
+    .container-btn .app-btn:hover {
+        background-color: #e11b0d;
+    }
+
+.pb-3 {
+    /*height: 77vh;*/
+    display: block;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    padding-top: 3rem;
+}
+
+.text-center {
+    text-align: center;
+    padding: 12%;
+    color: white;
+}
+
+    .text-center h1 {
+        font-size: 66px;
+        color: #e11b0d;
+    }
+
+    .text-center h3 {
+        color: #e11b0d;
+        font-size: 30px;
+    }
+
+main img {
+    width: 400px;
+    margin-right: 5rem;
+}
+
+.newsletter {
+    padding: 10px;
+    /*margin-top: -0.5rem;*/
+    color: #ffffff;
+    /*background: #282e44;*/
+}
+
+    /* .newsletter */
+    .newsletter h1 {
+        float: left;
+        margin-top: 15px;
+        color: white;
+    }
+
+    .newsletter form {
+        float: right;
+        margin-top: 15px;
+    }
+
+    .newsletter input[type="email"] {
+        padding: 10px 10px;
+        height: 30px;
+        width: 250px;
+    }
+
+.container .down {
+    width: 50%;
+}
+
+footer p {
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-left: 42%;
+}
+
+.social-hand {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5%;
+}
+
+
+
+.social-fb, .social-twit, .social-what {
+    /*color: white;
+    width: 50px;
+    padding: 10px 10px 5px 10px;
+    border-radius: 25px;
+    border: 2px solid white;
+    margin-right: 15px;
+    cursor: pointer;*/
+}
+
+    .social-fb:hover,
+    .social-twit:hover,
+    .social-what:hover {
+        border: 2px solid #e8491d;
+        /* background-color: aqua; */
+    }
+
+footer {
+    /*background-color: #282e44;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+    footer img {
+        width: 15px;
+    }

@@ -1,0 +1,84 @@
+﻿@using MyMVCProject.Core.Domain.Enums
+@model MyMVCProject.Models.CustomerModel.CustomerRequest
+@{
+    Layout = null;
+    var customer = Model;
+    if (customer == null)
+    {
+        customer = new MyMVCProject.Models.CustomerModel.CustomerRequest
+        {
+
+        };
+    }
+    var gender = new SelectList(Enum.GetValues(typeof(Gender)).Cast<Gender>(), customer.Gender);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+</head>
+<body>
+    <div class="container-outer">
+        
+        <div class="container">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <p class="alert">@TempData["ErrorMessage"]</p>
+            }
+            <div class="reg">
+                <h2>Registration Form</h2>
+            </div>
+            <form asp-action="RegisterCustomer" class="wrapper" method="post" enctype="multipart/form-data">
+                <div class="form-control">
+                    <label>First Name</label>
+                    <input type="text" name="FirstName" placeholder="first name" value="@customer.FirstName" required>
+                </div>
+                <div class="form-control">
+                    <label>Last Name</label>
+                    <input type="text" name="LastName" placeholder="last name" value="@customer.LastName" required>
+                </div>
+                <div class="form-control">
+                    <label>Email</label>
+                    <input type="email" name="Email" id="" placeholder="email" value="@customer.Email" required>
+                </div>
+                <div class="form-control">
+                    <label>Password</label>
+                    <input type="password" name="Password" id="password" placeholder="password" value="@customer.Password" required maxlength="8">
+                </div>
+                <div id="error"></div>
+                <div class="form-control">
+                    <label>Confirm Password</label>
+                    <input type="password" name="ConfirmPassword" id="confirmPass" placeholder="confirm password" value="@customer.ConfirmPassword" maxlength="8">
+                </div>
+                <div class="form-control">
+                    <label>Date of Birth</label>
+                    <input type="date" name="DateOfBirth" placeholder="date of birth" value="@customer.DateOfBirth" required>
+                </div>
+                <div class="form-control">
+                    <label>Phone Number</label>
+                    <input type="tel" name="PhoneNumber" placeholder="phonenumber" value="@customer.PhoneNumber">
+                </div>
+                <div class="form-control">
+                    <label>Gender</label>
+                    <select value="@customer.Gender" class="select" name="Gender" asp-items="@gender">
+                    </select>
+                </div>
+                <div class="imageUpload">
+                    <label class="lab">Image</label>
+                    <input type="file" name="Image" value="@customer.Image" />
+                </div>
+                <span class="login">Already have an account?  <a asp-action="Login" asp-controller="Authentication">Login</a></span>
+
+                <div class="form-control">
+                    <input class="submit" type="submit" value="Register">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script src="~/js/site.js">
+
+    </script>
+</body>
+</html>

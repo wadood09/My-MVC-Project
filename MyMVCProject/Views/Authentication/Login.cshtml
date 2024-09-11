@@ -1,0 +1,45 @@
+﻿@model MyMVCProject.Models.UserModel.LoginRequestModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="contain">
+        <div class="containerbox">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <p class="error">@TempData["ErrorMessage"]</p>
+            }
+            <div class="container">
+                <div class="reg">
+                    <h2>Login</h2>
+                </div>
+                <form action="#" class="wrapper" method="post">
+                    <div class="form-control">
+                        <input type="email" asp-for="Email" name="Email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-control">
+                        <input type="password" asp-for="Password" name="Password" id="" placeholder="Enter password" required maxlength="10" minlength="5>
+                    </div>
+                    <div class="form-control">
+                        <input class="submit" type="submit" value="Login">
+                    </div>
+                    <span class="login">Don't have an account?  <a asp-action="RegisterCustomer" asp-controller="Customer">Register</a></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

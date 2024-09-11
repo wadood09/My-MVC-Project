@@ -1,0 +1,92 @@
+﻿@model MyMVCProject.Models.CartModel
+
+@{
+    ViewData["Title"] = "GetCart";
+    Layout = "_Layout2";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Cart.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (Model == null || Model.Items.Count == 0)
+        {
+            <div class="empty">
+                <img src="~/images/AMARETTI.png" />
+                <strong>Your cart is empty!</strong>
+                <h5>Browse our menu and discover our tasty dishes</h5>
+                <button class="btn3">
+                    <a asp-action="GetAllMenu" asp-controller="Menu">Start Ordering</a>
+                </button>
+            </div>
+        }
+        else
+        {
+
+            <div class="detail-container">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <p class="alert">@TempData["SuccessMessage"]</p>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <p class="alert">@TempData["ErrorMessage"]</p>
+                }
+                <div class="semi-head">
+                    CART(@Model.Items.Count)
+                </div>
+                <div class="list">
+                    <ul>
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in Model.Items)
+                        {
+                            <li>
+                                <div class="item">
+                                    <div>
+                                        <img src="~/Images2/@item.Image" alt="@item.Name" />
+                                        <div class="item-info">
+                                            <p>Name: @item.Name</p>
+                                            <p>Price: @item.Price</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-bottom">
+                                        <div class="link">
+                                            <a asp-action="RemoveOrderItem" asp-route-id="@item.Id">Remove</a>
+                                        </div>
+                                        <div>
+                                            <form asp-action="ChangeOrderItemQuantity" method="post">
+                                                <input type="text" name="id" value="@item.Id" hidden />
+                                                <input type="text" name="sign" value="@int.Parse("-1")" hidden />
+                                                <button type="submit">&minus;</button>
+                                            </form>
+                                            <p id="value">@item.Quantity</p>
+                                            <form asp-action="ChangeOrderItemQuantity" method="post">
+                                                <input type="text" name="id" value="@item.Id" hidden />
+                                                <input type="text" name="sign" value="@int.Parse("1")" hidden />
+                                                <button type="submit">&plus;</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            ++i;
+                        }
+                    </ul>
+                </div>
+                <div class="btn">
+                    <a asp-action="MakeOrder">Make Order (#@Model.TotalPrice)</a>
+                </div>
+            </div>
+        }
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

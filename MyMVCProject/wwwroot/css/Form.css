@@ -1,0 +1,133 @@
+﻿* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    align-items: center;
+    display: block;
+    justify-content: center;
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.container {
+    margin-top: 15%;
+    margin-left: 28%;
+    width: 400px;
+    background-color: rgba(255,255,255,.1);
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    overflow: hidden;
+}
+
+.container-item {
+    margin-top: 8%;
+    margin-left: 28%;
+    width: 400px;
+    background-color: rgba(255,255,255,.1);
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    overflow: hidden;
+}
+
+.container-food {
+    margin-top: 10%;
+    margin-left: 28%;
+    width: 400px;
+    background-color: rgba(255,255,255,.1);
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    overflow: hidden;
+}
+
+.head {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(7, 50, 58);
+}
+
+p.error {
+    text-align: center;
+    background: rgb(219, 36, 36);
+    padding: 5px;
+    border-radius: 2px;
+    color: rgb(0, 0, 0);
+    /* animation: auto; */
+}
+
+.wrapper {
+    padding: 20px 40px;
+}
+
+.form-control {
+    justify-content: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+    .form-control input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+.submit {
+    background-color: #282e44;
+    border-style: none;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #05313f;
+    cursor: pointer;
+    font-size: large;
+    margin-top: 20px;
+}
+
+    .submit:hover {
+        background-color: orangered;
+        border: none;
+    }
+
+.form-control a {
+    text-decoration: none;
+}
+
+input[type="file"] {
+    padding: 2%;
+    margin-left: 20px;
+}
+
+.imageUpload {
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.alert {
+    width: 100%;
+    padding: 9px;
+    background-color: #0ee0a1;
+    color: red;
+    text-align: center;
+    font-size: 12px;
+}
+
+.select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-right: 50px;
+}
+
+    .select label {
+        margin-left: 50px;
+        margin-right: 50px;
+    }

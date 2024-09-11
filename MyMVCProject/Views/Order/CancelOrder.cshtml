@@ -1,0 +1,57 @@
+﻿@model MyMVCProject.Models.OrderModel.OrderResponse
+
+@{
+    ViewData["Title"] = "CancelOrder";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cancel Order</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Create.css">
+</head>
+<body>
+    <div class="container-outer">
+        <div class="container">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <p class="alert">@TempData["ErrorMessage"]</p>
+            }
+            <div class="reg">
+                <h2>Cancel Order</h2>
+            </div>
+            <form class="wrapper" method="post" enctype="multipart/form-data">
+
+                <div class="form-control">
+                    <label>Ordered By</label>
+                    <input class="input" type="text" name="CustomerName" value="@Model.CustomerName" readonly>
+                </div>
+                <div class="form-control">
+                    <label> Date Created</label>
+                    <input class="input" type="text" name="DateCreated" value="@Model.DateCreated" readonly>
+                </div>
+                <div class="form-control">
+                    <label> Description</label>
+                    <input class="input" type="text" name="Description" value="@Model.Description" readonly>
+                </div>
+                <div class="form-control">
+                    <label> Total Price</label>
+                    <input class="input" type="text" name="TotalPrice" value="@Model.TotalPrice" readonly>
+                </div>
+                <div class="form-control">
+                    <label> Items Ordered</label>
+                    <input class="input" type="text" name="Items" value="@Model.Items.Count" readonly>
+                </div>
+                <div class="form-control">
+                    <input class="submit" type="submit" value="Cancel Order">
+                    <input class="submit" type="submit" value="Return" asp-action="GoBack" asp-controller="User">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
+

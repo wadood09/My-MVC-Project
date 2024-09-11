@@ -1,0 +1,50 @@
+﻿@model MyMVCProject.Models.FoodModel.FoodResponse
+
+@{
+    ViewData["Title"] = "GetFood";
+    Layout = "_Layout2";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Details3.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="detail-container">
+            <h2>Food Details</h2>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Name</p>
+                </div>
+                <div class="ff">
+                    <p>@Model.Name</p>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Price</p>
+                </div>
+                <div class="ff">
+                    <p>@Model.Price</p>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Quantity</p>
+                </div>
+                <div class="ff">
+                    <p>@Model.Quantity</p>
+                </div>
+            </div>
+            <div class="btn">
+                <a asp-action="UpdateFood" asp-route-id="@Model.Id">Update Food</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

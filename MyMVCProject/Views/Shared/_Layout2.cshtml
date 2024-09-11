@@ -1,0 +1,163 @@
+﻿    @inject IHttpContextAccessor _httpContext
+    @inject IOrderService _orderService
+    @inject ICustomerService _customerService
+    @using MyMVCProject.Core.Application.Interface.Services
+    @using System.Security.Claims
+@{
+    var role = _httpContext.HttpContext.User.FindFirst(x => x.Type == ClaimTypes.Role).Value;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="~/css/Dashboard.css">
+    @*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <h2>Clh Restaurant</h2>
+        </div>
+        <div class="items">
+            <ul>
+                <li>
+                    <a asp-action="DashBoard" asp-controller="User">
+                        <i class="fa fa-dashboard fas"></i>DashBoard
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Home">
+                        <i class='fa fa-home fas'></i>Home
+                    </a>
+                </li>
+                @if (role != "Customer")
+                {
+                    if (role == "Admin")
+                    {
+                        <li>
+                            <a asp-action="GetAllUsers" asp-controller="User">
+                                <i class="fa fa-users fas"></i>Manage Users
+                            </a>
+                        </li>
+                    }
+                    <li>
+                        <a asp-action="GetAllMenu" asp-controller="Menu">
+                            <i class='fa fa-bars fas'></i> Manage Menu
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="GetAllOrder" asp-controller="Order">
+                            <i class='fa fa-utensils fas'></i> Manage Order
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="GetAllFood" asp-controller="Food">
+                            <i class='fa fa-bread-slice fas'></i> Manage Food
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="GetAllCustomers" asp-controller="Customer">
+                            <i class='fa fa-user-circle fas'></i> Manage Customer
+                        </a>
+                    </li>
+                }
+                @if (role == "Customer")
+                {
+                    <li>
+                        <a asp-action="GetAllMenu" asp-controller="Menu">
+                            <i class='fa fa-bars fas'></i> Manage Menu
+                        </a>
+                    </li>
+                    var count = await _orderService.LoggedinCustomerOrderCount();
+                    if (count != 0)
+                    {
+                        var customerId = await _customerService.GetLoginCustomerId();
+                        <li>
+                            <a asp-action="GetAllOrderByCustomer" asp-route-customerId="@customerId" asp-controller="Order">
+                                <i class='fa fa-utensils fas'></i> Manage Order
+                            </a>
+                        </li>
+                    }
+                    <li>
+                        <a asp-action="GetCart" asp-controller="Order">
+                            <i class='fa fa-shopping-cart fas'></i> Cart
+                        </a>
+                    </li>
+                }
+                @if (role != "Chef")
+                {
+                    <li>
+                        <a asp-action="GetWallet" asp-controller="Wallet">
+                            <i class='fa fa-wallet fas'></i> Wallet
+                        </a>
+                    </li>
+                }
+                @if (role != "Admin")
+                {
+                    if (role == "Customer")
+                    {
+                        var customerId = await _customerService.GetLoginCustomerId();
+                        <li>
+                            <a asp-action="GetCustomer" asp-route-id="@customerId" asp-controller="Customer">
+                                <i class='fa fa-user-circle fas'></i> Profile
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        var userId = _httpContext.HttpContext.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
+                        <li>
+                            <a asp-action="GetUser" asp-route-id="@userId" asp-controller="User">
+                                <i class='fa fa-user-circle fas'></i> Profile
+                            </a>
+                        </li>
+                    }
+                }
+                <li class="signout">
+                    <a asp-action="Logout" asp-controller="Authentication">
+                        <i class='fa fa-sign-out'></i>Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section id="interface">
+        <!-- nav bar containing profile and search bar -->
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <a asp-action="GoBack" asp-controller="User">
+                        <i id="menu-btn" class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <div class="profile-bell">
+                    <div class="search">
+                        <i class="	fa fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <div class="profile">
+                        <i class="fa fa-bell"></i>
+
+                        <!-- this image will be dynamically rendered to pop up the log in user's image -->
+                        <img src="~/Images2/@_httpContext.HttpContext.User.Claims.First(x => x.Type == "Profile").Value" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============boxes for values ============-->
+        @RenderBody()
+    </section>
+    <script>
+        $('#menu-btn').click(function () {
+            $('#menu').toggleClass("active");
+        })
+    </script>
+</body>
+</html>

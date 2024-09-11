@@ -1,0 +1,150 @@
+﻿@model MyMVCProject.Models.OrderModel.OrderResponse
+@inject IHttpContextAccessor _httpContext
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "GetOrder";
+    Layout = "_Layout2";
+    var role = _httpContext.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Role).Value;
+    // var items = new List<MyMVCProject.Models.OrderModel.OrderItemResponse>
+    // {
+    //     new MyMVCProject.Models.OrderModel.OrderItemResponse
+    //     {
+    //         FoodName = "Pepperoni pizza",
+    //         UnitPrice = 2300,
+    //         Units = 5
+    //     },
+    //     new MyMVCProject.Models.OrderModel.OrderItemResponse
+    //     {
+    //         FoodName = "Pepperoni pizza",
+    //         UnitPrice = 2300,
+    //         Units = 5
+    //     },
+    //     new MyMVCProject.Models.OrderModel.OrderItemResponse
+    //     {
+    //         FoodName = "Pepperoni pizza",
+    //         UnitPrice = 2300,
+    //         Units = 5
+    //     },
+    //     new MyMVCProject.Models.OrderModel.OrderItemResponse
+    //     {
+    //         FoodName = "Pepperoni pizza",
+    //         UnitPrice = 2300,
+    //         Units = 5
+    //     },
+    // };
+    var order = Model;
+    // new MyMVCProject.Models.OrderModel.OrderResponse
+    //         {
+    //             Id = 2,
+    //             CustomerName = "Adekola Hazeeb",
+    //             DateCreated = DateTime.Now,
+    //             Description = "This order has no description",
+    //             TotalPrice = 2300,
+    //             OrderStatus = MyMVCProject.Core.Domain.Enums.Status.Processing,
+    //             Items = items
+    //         };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Order.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="detail-container">
+            <h2>Order Details</h2>
+            @if(role != "Customer")
+            {
+                <div class="wrapper">
+                    <div class="gg">
+                        <p>Ordered By:</p>
+                    </div>
+                    <div class="ff">
+                        <p>@order.CustomerName</p>
+                    </div>
+                </div>
+            }
+            
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Date Ordered:</p>
+                </div>
+                <div class="ff">
+                    <p>@order.DateCreated</p>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Status:</p>
+                </div>
+                <div class="ff">
+                    <p>@order.OrderStatus</p>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="gg">
+                    <p>Description:</p>
+                </div>
+                <div class="ff">
+                    <p>@order.Description</p>
+                </div>
+            </div>
+            <div>
+                <h1>Items</h1>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in order.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @{
+                                        ++i;
+                                    }
+                                    @i
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FoodName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Units)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="btn">
+                <a asp-action="UpdateOrder" asp-route-id="@order.Id">Update Order</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿@model MyMVCProject.Models.UserModel.UserResponse
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="~/css/Dashboard.css">
+    <link rel="stylesheet" href="~/css/Department.css">
+    <link rel="stylesheet" href="~/css/Staff.css">
+@*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="AIRIS-Photoroom.png-Photoroom3.svg" alt="">
+            <h2>Airis SDMS</h2>
+        </div>
+
+        <div class="items">
+            <li>
+                <a asp-action="StaffDashBoard" asp-controller="User">
+                    <i class="fa fa-dashboard fas"></i>DashBoard
+                </a>
+            </li>
+            <li>
+                <a asp-action="Index" asp-controller="Home">
+                    <i class='fa fa-home fas'></i>Home
+                </a>
+            </li>
+            <li>
+                <a asp-action="StaffDetail" asp-controller="Staff" asp-route-id="@Model.Id">
+                    <i class="fa fa-group fas"></i>Update Details
+                </a>
+            </li>
+            @* <li>
+                <a asp-action="ManageDepartment" asp-controller="Department">
+                    <i class='fa fa-bars fas'></i> Manage Department
+                </a>
+            </li> *@
+            <li>
+                <a asp-action="ListAllDocument" asp-controller="Document">
+                    <i class='fa fa-book fas'></i> Manage Document
+                </a>
+            </li>
+            <li class="signout">
+                <a asp-action="LogOut" asp-controller="User">
+                    <i class='fa fa-sign-out'></i>Sign Out
+                </a>
+            </li>
+
+        </div>
+    </section>
+    <section id="interface">
+
+
+        <!-- nav bar containing profile and search bar -->
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fa fa-bars"></i>
+                </div>
+                <div class="profile-bell">
+                    <div class="search">
+                        <i class="	fa fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <div class="profile">
+                        <i class="fa fa-bell"></i>
+
+                        <!-- this image will be dynamically rendered to pop up the log in user's image -->
+                        @* <img src="~/images/tobi.jpg" alt=""> *@
+                        <img src="~/src/Picture/@Model.ImageUrl" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============boxes for values ============-->
+
+        @RenderBody()
+    </section>
+    <script>
+        $('#menu-btn').click(function () {
+            $('#menu').toggleClass("active");
+        })
+    </script>
+</body>
+</html>

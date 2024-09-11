@@ -1,0 +1,136 @@
+﻿@model IEnumerable<MyMVCProject.Models.OrderModel.OrdersResponse>
+
+@{
+    ViewData["Title"] = "GetAllOrder";
+    Layout = "_Layout2";
+    var orders = Model;
+    // new List<MyMVCProject.Models.OrderModel.OrdersResponse>
+    // {
+    //     new MyMVCProject.Models.OrderModel.OrdersResponse
+    //     {
+    //         CustomerName = "Adekola Hazeeb",
+    //         DateCreated = DateTime.Now,
+    //         Description = "This order has no description",
+    //         TotalPrice = 2300
+    //     },
+    //     new MyMVCProject.Models.OrderModel.OrdersResponse
+    //     {
+    //         CustomerName = "Adekola Hazeeb",
+    //         DateCreated = DateTime.Now,
+    //         Description = "This order has no description",
+    //         TotalPrice = 2300
+    //     },
+    //     new MyMVCProject.Models.OrderModel.OrdersResponse
+    //     {
+    //         CustomerName = "Adekola Hazeeb",
+    //         DateCreated = DateTime.Now,
+    //         Description = "This order has no description",
+    //         TotalPrice = 2300
+    //     },
+    //     new MyMVCProject.Models.OrderModel.OrdersResponse
+    //     {
+    //         CustomerName = "Adekola Hazeeb",
+    //         DateCreated = DateTime.Now,
+    //         Description = "This order has no description",
+    //         TotalPrice = 2300
+    //     },
+    //     new MyMVCProject.Models.OrderModel.OrdersResponse
+    //     {
+    //         CustomerName = "Adekola Hazeeb",
+    //         DateCreated = DateTime.Now,
+    //         Description = "This order has no description",
+    //         TotalPrice = 2300
+    //     }
+    // };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Table.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <p class="alert">@TempData["SuccessMessage"]</p>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+        <h1>GetAllOrders</h1>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        Ordered By
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 0;
+                }
+                @foreach (var item in orders)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                ++i;
+                            }
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @if(item.Status == MyMVCProject.Core.Domain.Enums.Status.Processing)
+                            {
+                                <a asp-action="VerifyOrder" asp-route-id="@item.Id">Accept Order</a>
+                                <span> | </span>
+                                <a asp-action="CancelOrder" asp-route-id="@item.Id">Cancel Order</a>
+                                <span> | </span>
+                            }
+                            <a asp-action="GetOrder" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+

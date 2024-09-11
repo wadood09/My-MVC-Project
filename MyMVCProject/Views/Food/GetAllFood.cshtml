@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MyMVCProject.Models.FoodModel.FoodResponse>
+
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "GetAllFood";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Table.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <p class="alert">@TempData["SuccessMessage"]</p>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="alert">@TempData["ErrorMessage"]</p>
+        }
+        <h1>GetAllFoods</h1>
+
+        <p>
+            <a asp-action="AddFood">Create New</a>
+        </p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{++i;}
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            <a asp-action="UpdateFood" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="GetFood" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="DeleteFood" asp-route-id="@item.Id">Delete</a> 
+                        </td>
+                    </tr>
+                }   
+            </tbody>
+        </table>
+    </div>
+</body>
+</html></html>

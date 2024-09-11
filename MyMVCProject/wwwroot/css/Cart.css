@@ -1,0 +1,218 @@
+﻿.container {
+    margin-top: 8%;
+    margin-left: 2%;
+}
+
+
+
+    .container h2 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+
+/* Container styling for the detail view */
+.detail-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #05313f;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    /* Header styling */
+    .detail-container h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .detail-container h5 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: black;
+        text-align: center;
+    }
+
+    /* List styling */
+    .detail-container .list ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .detail-container .list li {
+        margin-bottom: 15px;
+    }
+
+    /* Individual item styling */
+    .detail-container .item {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #777;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        text-align: match-parent;
+        color: black;
+        display: block;
+        align-items: center;
+    }
+
+        .detail-container .item div {
+            text-align: match-parent;
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-container .item p {
+            margin: 5px 0;
+            color: black;
+        }
+
+        .detail-container .item img {
+            max-width: 150px; /* Set a max width for the image */
+            height: auto;
+            border-radius: 4px;
+            margin-right: 30px;
+        }
+
+.item .item-info {
+    display: flex;
+    flex-direction: column; /* Stack text vertically */
+}
+
+/* Button styling */
+.detail-container .btn {
+    margin-top: 20px;
+    text-align: center;
+}
+
+    .detail-container .btn a {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+        .detail-container .btn a:hover {
+            background-color: #0056b3;
+        }
+
+.btn2 {
+    margin-top: 20px;
+    text-align: end;
+    padding-top: 100px;
+    padding-left: 170px;
+}
+
+    .btn2 a {
+        color: black;
+        text-decoration: none;
+    }
+
+        .btn2 a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+
+.select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-right: 50px;
+}
+
+    .select label {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+.empty {
+    margin-left: 300px;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+    .empty img {
+        max-width: 1800px; /* Set a max width for the image */
+        height: 300px;
+        border-radius: 4px;
+        margin-right: 30px;
+    }
+
+    .empty strong {
+        text-align: center;
+    }
+
+    .empty .btn3 {
+        text-align: center;
+        background-color: orangered;
+        padding: 10px;
+        border-radius: 7px;
+        margin-top: 10px;
+        border: none;
+    }
+
+        .empty .btn3:hover {
+            background-color: rgb(250, 94, 38);
+            color: black;
+        }
+
+        .empty .btn3 a {
+            color: white;
+            text-decoration: none;
+        }
+
+            .empty .btn3 a:hover {
+                color: black;
+                text-decoration: underline;
+            }
+
+.item-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .item-bottom button {
+        padding: 2px 10px;
+        margin: 20px 20px 10px 20px;
+    }
+
+    .item-bottom p {
+        padding-top: 5px;
+    }
+
+    .item-bottom .link {
+        padding-left: 40px;
+    }
+
+        .item-bottom .link a {
+            color: black;
+            text-decoration: none;
+        }
+
+            .item-bottom .link a:hover {
+                color: blue;
+                text-decoration: underline;
+            }
+
+.semi-head {
+    margin-bottom: 10px;
+}
+
+.alert {
+    width: 100%;
+    padding: 9px;
+    background-color: #0ee0a1;
+    color: red;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
